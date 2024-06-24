@@ -10,7 +10,7 @@ class AzureConfig:
         '''Parse configuration file 
         
         :param conf_file_path: path to configuration file
-        :return: DiagToolsTestConfiguration instance or Exception
+        :return: AzureConfig instance or Exception
         '''
         try:
             config = configparser.ConfigParser()
@@ -30,10 +30,61 @@ class AzureConfig:
             raise Exception(f'fail to parse conf file {conf_file_path}: {ex}')    
         
 
-class DiagnosticToolsInfo:
-    SDK_major_version_list: list[str] = []
-    diag_tools_last_week_test_config: dict = dict()
+class DiagToolWeeklyTestconfig:
+    def __init__(self, conf_file_path: str) -> None:
+        self.__parse_conf_file(conf_file_path)
 
-    diag_tools_alternate_os_list: list[str] = []
+    def __parse_conf_file(self, conf_file_path: str) -> None:
+        '''Parse configuration file 
+        
+        :param conf_file_path: path to configuration file
+        :return: DiagToolWeeklyTestconfig instance or Exception
+        '''
+        try:
+            config = configparser.ConfigParser()
+            config.read(conf_file_path)
 
-    LTTng_OS_list: list[str] = []
+            self.SDK_major_version_list = config['Branch']['major'].split('\n')
+            self.SDK_major_version_list.remove('')
+
+            self.last_week_required_os_list = config['DiagToolsTestLastWeekConfig']['requiredOS'].split('\n')
+            self.last_week_required_os_list.remove('')
+
+            self.last_week_required_os_sdk_branch_list = config['DiagToolsTestLastWeekConfig']['requiredOSSDKBranch'].split('\n')
+            self.last_week_required_os_sdk_branch_list.remove('')
+
+            self.last_week_alternate_os_list = config['DiagToolsTestLastWeekConfig']['alternateOS'].split('\n')
+            self.last_week_alternate_os_list.remove('')
+
+            self.last_week_alternate_os_sdk_branch_list = config['DiagToolsTestLastWeekConfig']['alternateOSSDKBranch'].split('\n')
+            self.last_week_alternate_os_sdk_branch_list.remove('')
+
+            self.alternate_os_list = config['DiagToolsTest']['alternateOSTable'].split('\n')
+            self.alternate_os_list.remove('')
+
+        except Exception as ex:
+            raise Exception(f'fail to parse conf file {conf_file_path}: {ex}')    
+
+
+class LTTngWeeklyTestconfig:
+    def __init__(self, conf_file_path: str) -> None:
+        self.__parse_conf_file(conf_file_path)
+
+    def __parse_conf_file(self, conf_file_path: str) -> None:
+        '''Parse configuration file 
+        
+        :param conf_file_path: path to configuration file
+        :return: DiagToolWeeklyTestconfig instance or Exception
+        '''
+        try:
+            config = configparser.ConfigParser()
+            config.read(conf_file_path)
+            
+            self.SDK_major_version_list = config['Branch']['major'].split('\n')
+            self.SDK_major_version_list.remove('')
+            
+            self.lttng_os_list = config['LTTngTest']['os'].split('\n')
+            self.lttng_os_list.remove('')
+        
+        except Exception as ex:
+            raise Exception(f'fail to parse conf file {conf_file_path}: {ex}')    

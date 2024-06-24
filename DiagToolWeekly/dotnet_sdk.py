@@ -2,7 +2,6 @@ import os
 import glob
 import zipfile
 import tempfile
-from urllib import request
 from xml.etree import ElementTree as ET
 
 import app
@@ -11,9 +10,10 @@ from tools import azure_service
 
 
 class DotnetSDKInfo:
-    def __init__(self, branch_name: str, dotnet_sdk_version: str) -> None:
+    def __init__(self, branch_name: str, dotnet_sdk_version: str, build_id: str) -> None:
         self.branch_name = branch_name
         self.dotnet_sdk_version = dotnet_sdk_version
+        self.build_id = build_id
 
 
 @app.function_monitor(
@@ -66,7 +66,7 @@ def get_latest_sdk_info_by_branch_name(azure_config: AzureConfig, branch_name: s
             root = tree.getroot()
             
             version = root.findall('Blob')[0].attrib['Id'].split('/')[1]
-            return DotnetSDKInfo(branch_name, version)
+            return DotnetSDKInfo(branch_name, version, build_id)
         except Exception as ex:
             return Exception(f'fail to get sdk version from build-{build_id}: {ex}')
 
