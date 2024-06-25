@@ -44,6 +44,8 @@ class DiagToolWeeklyTestconfig:
             config = configparser.ConfigParser()
             config.read(conf_file_path)
 
+            self.output_folder = config['Output']['projectRoot']
+
             self.SDK_major_version_list = config['Branch']['major'].split('\n')
             self.SDK_major_version_list.remove('')
 
@@ -79,6 +81,8 @@ class LTTngWeeklyTestconfig:
         try:
             config = configparser.ConfigParser()
             config.read(conf_file_path)
+            
+            self.output_folder = config['Output']['projectRoot']
             
             self.SDK_major_version_list = config['Branch']['major'].split('\n')
             self.SDK_major_version_list.remove('')
