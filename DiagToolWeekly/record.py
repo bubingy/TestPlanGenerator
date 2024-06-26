@@ -52,7 +52,7 @@ def write_SDKInfo_to_json(output_folder: str, sdk_info_list: list[DotnetSDKInfo]
 @app.function_monitor(
     pre_run_msg='write diag tool info to json'
 )
-def write_SDKInfo_to_json(output_folder: str, diag_tool_info: DiagnosticToolsInfo) -> None | Exception:
+def write_diag_tool_info_to_json(output_folder: str, diag_tool_info: DiagnosticToolsInfo) -> None | Exception:
     output_path = os.path.join(output_folder, 'DiagToolInfo.json')
 
     _diag_tool_info = {

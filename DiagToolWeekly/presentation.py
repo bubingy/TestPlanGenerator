@@ -232,7 +232,7 @@ def write_weekly_diag_tools_test_matrix_to_sheet(workbook: Workbook, os_sdk_map:
 @app.function_monitor(
     pre_run_msg='write lttng test matrix to spread sheet'
 )
-def print_weekly_lttng_test_matrix_on_sheet(workbook: Workbook, lttng_conf: LTTngWeeklyTestconfig) -> None:
+def write_weekly_lttng_test_matrix_on_sheet(workbook: Workbook, lttng_conf: LTTngWeeklyTestconfig) -> None:
     sheet_name = 'LTTng Test'
     if sheet_name in workbook.sheetnames:
         workbook.remove(sheet_name)
