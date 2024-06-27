@@ -44,7 +44,7 @@ def write_SDKInfo_to_json(output_folder: str, sdk_info_list: list[DotnetSDKInfo]
             os.remove(output_path)
 
         with open(output_path, 'w+') as fp:
-            json.dump(_sdk_info_list, fp)
+            json.dump(list(_sdk_info_list), fp)
     except Exception as ex:
         return Exception(f'fail to write sdk info: {ex}')
 

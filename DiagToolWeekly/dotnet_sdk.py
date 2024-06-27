@@ -24,7 +24,8 @@ def get_latest_sdk_info_by_branch_name(azure_config: AzureConfig, branch_name: s
         azure_config.pat,
         azure_config.installer_organization,
         azure_config.installer_project,
-        azure_config.installer_pipeline_id
+        azure_config.installer_pipeline_id,
+        branch_name
     )
 
     if isinstance(build_info, Exception):
@@ -47,6 +48,7 @@ def get_latest_sdk_info_by_branch_name(azure_config: AzureConfig, branch_name: s
         # download AssetManifests.zip
         file_path = azure_service.download_artifact(
             azure_config.pat,
+            'AssetManifests',
             artifact_download_url,
             tempdir
         )

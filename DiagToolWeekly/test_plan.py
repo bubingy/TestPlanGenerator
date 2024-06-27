@@ -52,7 +52,7 @@ def generate_diag_tool_weekly_test_plan(azure_conf: AzureConfig,
     presentation.write_weekly_diag_tools_test_matrix_to_sheet(workbook, os_sdk_map)
     record.write_diag_tool_test_matrix_to_json(diag_conf.output_folder, os_sdk_map)
 
-    # lttng info
+    # # lttng info
     presentation.write_weekly_lttng_test_matrix_on_sheet(workbook, lttng_conf)
     record.write_LTTngInfo_to_json(diag_conf.output_folder, lttng_conf)
 

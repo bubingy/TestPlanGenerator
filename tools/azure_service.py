@@ -88,7 +88,7 @@ def get_artifact(pat: str,
         return Exception(f'fail to get artifact {artifact_name} of build {build_id}: {ex}')
 
 
-def download_artifact(pat: str, download_url: str, output_dir: str, buffer_size: int=2097152) -> str|Exception:
+def download_artifact(pat: str, artifact_name: str, download_url: str, output_dir: str, buffer_size: int=2097152) -> str|Exception:
     authorization = convert_pat(pat)
     try:
         response = request.urlopen(
@@ -100,8 +100,7 @@ def download_artifact(pat: str, download_url: str, output_dir: str, buffer_size:
             )
         )
 
-        file_name = os.path.basename(download_url)
-        file_path = os.path.join(output_dir, file_name)
+        file_path = os.path.join(output_dir, f'{artifact_name}.zip')
         with open(file_path, 'wb+') as out:
             while True:
                 buffer = response.read(buffer_size)

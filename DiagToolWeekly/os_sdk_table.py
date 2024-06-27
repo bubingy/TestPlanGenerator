@@ -6,7 +6,6 @@ from DiagToolWeekly.configuration import DiagToolWeeklyTestconfig
 )
 def get_required_os_sdk_map(diag_conf: DiagToolWeeklyTestconfig) -> dict:
     required_os_sdk_map = dict()
-
     for idx, os_name in enumerate(diag_conf.last_week_required_os_list):
         last_week_sdk_branch = diag_conf.last_week_required_os_sdk_branch_list[idx]
         if last_week_sdk_branch in diag_conf.SDK_major_version_list:

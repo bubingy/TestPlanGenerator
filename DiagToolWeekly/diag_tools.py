@@ -45,6 +45,7 @@ def get_latest_diagnostic_tool_info(azure_config: AzureConfig) -> DiagnosticTool
         # download AssetManifests.zip
         file_path = azure_service.download_artifact(
             azure_config.pat,
+            'AssetManifests',
             artifact_download_url,
             tempdir
         )
