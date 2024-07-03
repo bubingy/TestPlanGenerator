@@ -1,6 +1,5 @@
 import os
 import json
-import shutil
 
 import app
 from DiagToolWeekly.dotnet_sdk import DotnetSDKInfo

@@ -17,6 +17,9 @@ from DiagToolWeekly import record
 def generate_diag_tool_weekly_test_plan(azure_conf: AzureConfig,
                                         diag_conf: DiagToolWeeklyTestconfig,
                                         lttng_conf: LTTngWeeklyTestconfig):
+    if not os.path.exists(diag_conf.output_folder):
+        os.makedirs(diag_conf.output_folder)
+
     # create excel
     workbook = Workbook()
 
