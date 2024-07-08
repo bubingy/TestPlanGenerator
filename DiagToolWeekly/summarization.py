@@ -85,7 +85,7 @@ def summarize_diag_tool_test_plan(project_root: str):
 
         lttng_test_sheet.append(row)
 
-    summarization_path = os.path.join(project_root, 'summarization.xlsx')
+    summarization_path = os.path.join(project_root, 'DiagWeeklyTestSum.xlsx')
     if os.path.exists(summarization_path):
         os.remove(summarization_path)
     workbook.save(summarization_path)

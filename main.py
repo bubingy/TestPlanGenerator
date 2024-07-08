@@ -40,6 +40,7 @@ if __name__ == '__main__':
         summarization_type = args.summarization_type
         project_root = args.project_root
         testplan_summarization.summarize_test_plan(summarization_type, project_root)
+
     else:
         print(f'unknown action: {action}')
     
